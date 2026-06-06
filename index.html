@@ -1,9 +1,520 @@
-<!doctype html>
-<html>
-  <head>
-    <title>This is the title of the webpage!</title>
-  </head>
-  <body>
-    <p>This is an example paragraph. Anything in the <strong>body</strong> tag will appear on the page, just like this <strong>p</strong> tag and its contents.</p>
-  </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circadian Rhythm - Creative Consulting</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --camo-dark: #1a1a18;
+            --camo-green: #3d5941;
+            --camo-tan: #8b8680;
+            --camo-light: #d4ccc4;
+            --camo-accent: #4a7c59;
+            --grain: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" /></filter><rect width="400" height="400" fill="%231a1a18" filter="url(%23noise)" opacity="0.03"/></svg>');
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background-color: var(--camo-dark);
+            color: var(--camo-light);
+            line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: var(--grain);
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.4;
+        }
+
+        header {
+            position: relative;
+            padding: 3rem 2rem;
+            border-bottom: 1px solid var(--camo-green);
+            background-color: var(--camo-dark);
+            z-index: 10;
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            color: var(--camo-accent);
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: var(--camo-accent);
+            animation: slideIn 0.8s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+            }
+            to {
+                width: 100%;
+            }
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 3rem;
+        }
+
+        nav a {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--camo-tan);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background-color: var(--camo-accent);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--camo-accent);
+        }
+
+        nav a:hover::before {
+            width: 100%;
+        }
+
+        main {
+            position: relative;
+            z-index: 2;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 10%;
+            right: -5%;
+            width: 500px;
+            height: 500px;
+            border: 1px solid var(--camo-green);
+            border-radius: 50%;
+            opacity: 0.15;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 5%;
+            left: 5%;
+            width: 300px;
+            height: 300px;
+            border: 2px solid var(--camo-accent);
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            opacity: 0.2;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-30px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            text-align: left;
+            animation: fadeInUp 1.2s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            font-weight: 600;
+            letter-spacing: -1px;
+            color: var(--camo-light);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            color: var(--camo-accent);
+            display: block;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--camo-tan);
+            max-width: 600px;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            border: 1px solid var(--camo-accent);
+            color: var(--camo-accent);
+            text-decoration: none;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--camo-accent);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            color: var(--camo-dark);
+            left: 0;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .portfolio-section {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, var(--camo-dark) 0%, #252520 100%);
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .portfolio-header {
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .portfolio-header h2 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: clamp(1.8rem, 5vw, 2.5rem);
+            color: var(--camo-light);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+        }
+
+        .portfolio-header p {
+            color: var(--camo-tan);
+            font-size: 1rem;
+            max-width: 400px;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            position: relative;
+            z-index: 3;
+        }
+
+        .portfolio-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, var(--camo-green) 0%, var(--camo-tan) 100%);
+            border: 1px solid var(--camo-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+            border-color: var(--camo-light);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .portfolio-item:hover::before {
+            opacity: 1;
+        }
+
+        .portfolio-item-content {
+            text-align: center;
+            color: var(--camo-dark);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+
+        .about-section {
+            padding: 6rem 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 2rem;
+            color: var(--camo-light);
+            margin-bottom: 2rem;
+            letter-spacing: -0.5px;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            color: var(--camo-tan);
+            margin-bottom: 1.5rem;
+            line-height: 1.9;
+        }
+
+        footer {
+            border-top: 1px solid var(--camo-green);
+            padding: 3rem 2rem;
+            text-align: center;
+            color: var(--camo-tan);
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Decorative network lines */
+        svg {
+            position: absolute;
+            opacity: 0.08;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero::before,
+            .hero::after {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Network Pattern -->
+    <svg width="100%" height="100%" viewBox="0 0 1200 800" style="position: fixed; top: 0; left: 0; z-index: 0;">
+        <defs>
+            <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#3d5941" stroke-width="0.5"/>
+            </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#grid)" opacity="0.03"/>
+    </svg>
+
+    <header>
+        <nav>
+            <div class="logo">Circadian Rhythm</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#photography">Photography</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h1>Circadian<span>Rhythm</span></h1>
+                <p>Where human form meets digital infrastructure. Raw photography. 3D motion. Digital experiences. Building the future, one frame at a time.</p>
+                <a href="#portfolio" class="cta-button">View Work</a>
+            </div>
+        </section>
+
+        <section class="portfolio-section" id="portfolio">
+            <div class="portfolio-header">
+                <h2>Photography & 3D</h2>
+                <p>Film photography and 3D motion graphics. Coming soon.</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-item-content">
+                        <div>Film</div>
+                        <div style="font-size: 0.7rem; opacity: 0.6; margin-top: 0.5rem;">Coming Soon</div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-item-content">
+                        <div>3D Motion</div>
+                        <div style="font-size: 0.7rem; opacity: 0.6; margin-top: 0.5rem;">Coming Soon</div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-item-content">
+                        <div>Digital Experiences</div>
+                        <div style="font-size: 0.7rem; opacity: 0.6; margin-top: 0.5rem;">Coming Soon</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="about-section" id="contact">
+            <div class="about-content">
+                <h2>About</h2>
+                <p>Circadian Rhythm is a creative consulting studio focused on human-centered design and digital innovation. We explore the intersection of analog and digital, geometry and organic forms, code and creativity.</p>
+                <p>Starting with photography and 3D motion, we're building a platform for multi-disciplinary creative work—with plans to expand into brand design, digital products, and beyond.</p>
+                <p>Let's create something raw and meaningful together.</p>
+                <p style="margin-top: 2rem; color: var(--camo-accent);">contact@circadianrhythm.studio</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Circadian Rhythm. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Smooth scroll behavior
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.portfolio-item').forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(item);
+        });
+    </script>
+</body>
 </html>
