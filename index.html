@@ -3,518 +3,675 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Circadian Rhythm - Creative Consulting</title>
+    <title>Circadian Rhythm — Film photography, 3D motion and digital experiences</title>
+    <meta name="description" content="Circadian Rhythm is a Chicago creative studio working in film photography, 3D motion and digital experiences.">
+    <meta property="og:title" content="Circadian Rhythm">
+    <meta property="og:description" content="A Chicago creative studio working in film photography, 3D motion and digital experiences.">
+    <meta property="og:type" content="website">
+    <meta name="theme-color" content="#1d1c18">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%236f8a5e' stroke-width='2'/%3E%3Ccircle cx='16' cy='5' r='3.5' fill='%23c9a25e'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Crimson+Text:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --camo-dark: #1a1a18;
-            --camo-green: #3d5941;
-            --camo-tan: #8b8680;
-            --camo-light: #d4ccc4;
-            --camo-accent: #4a7c59;
-            --grain: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" result="noise" /></filter><rect width="400" height="400" fill="%231a1a18" filter="url(%23noise)" opacity="0.03"/></svg>');
+            --soil: #1d1c18;
+            --soil-2: #25241f;
+            --olive: #3d5941;
+            --moss: #7d9a6a;
+            --bark: #9a948b;
+            --bone: #e6ddd0;
+            --amber: #c9a25e;
+            --night: #2a3340;
+
+            --serif: 'Crimson Text', Georgia, serif;
+            --mono: 'IBM Plex Mono', ui-monospace, monospace;
+
+            --measure: 34rem;
+            --gutter: clamp(1.25rem, 4vw, 3rem);
+            --max: 1240px;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Crimson Text', serif;
-            background-color: var(--camo-dark);
-            color: var(--camo-light);
-            line-height: 1.6;
-            position: relative;
-            overflow-x: hidden;
+            font-family: var(--serif);
+            font-size: 1.1875rem;
+            line-height: 1.65;
+            background: var(--soil);
+            color: var(--bone);
+            -webkit-font-smoothing: antialiased;
         }
 
-        body::before {
+        /* Film grain */
+        body::after {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: var(--grain);
+            inset: -50%;
             pointer-events: none;
-            z-index: 1;
-            opacity: 0.4;
+            z-index: 50;
+            opacity: 0.07;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
         }
 
-        header {
-            position: relative;
-            padding: 3rem 2rem;
-            border-bottom: 1px solid var(--camo-green);
-            background-color: var(--camo-dark);
-            z-index: 10;
+        a { color: inherit; }
+
+        :focus-visible {
+            outline: 2px solid var(--amber);
+            outline-offset: 4px;
         }
 
-        nav {
-            max-width: 1400px;
+        .skip {
+            position: absolute;
+            left: var(--gutter);
+            top: -3rem;
+            background: var(--bone);
+            color: var(--soil);
+            padding: 0.5rem 1rem;
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            z-index: 100;
+        }
+        .skip:focus { top: 1rem; }
+
+        .wrap {
+            max-width: var(--max);
             margin: 0 auto;
+            padding: 0 var(--gutter);
+        }
+
+        /* Header */
+        .site-header {
+            padding: 1.75rem 0;
+        }
+        .site-header .wrap {
             display: flex;
             justify-content: space-between;
-            align-items: center;
+            align-items: baseline;
+            gap: 1.5rem;
         }
-
-        .logo {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 1.2rem;
+        .wordmark {
+            font-family: var(--serif);
+            font-size: 1.35rem;
             font-weight: 600;
-            letter-spacing: 2px;
-            color: var(--camo-accent);
-            text-transform: uppercase;
-            position: relative;
+            text-decoration: none;
+            letter-spacing: 0.01em;
         }
-
-        .logo::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: var(--camo-accent);
-            animation: slideIn 0.8s ease-out forwards;
-        }
-
-        @keyframes slideIn {
-            from {
-                width: 0;
-            }
-            to {
-                width: 100%;
-            }
-        }
-
-        nav ul {
+        .site-header nav ul {
             list-style: none;
             display: flex;
-            gap: 3rem;
+            gap: clamp(1.25rem, 3vw, 2.5rem);
         }
-
-        nav a {
-            font-family: 'IBM Plex Mono', monospace;
+        .site-header nav a {
+            font-family: var(--mono);
             font-size: 0.85rem;
-            color: var(--camo-tan);
+            color: var(--bark);
             text-decoration: none;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            transition: color 0.3s ease;
+            padding: 0.25rem 0;
+            border-bottom: 1px solid transparent;
+            transition: color 0.2s, border-color 0.2s;
+        }
+        .site-header nav a:hover {
+            color: var(--bone);
+            border-color: var(--moss);
         }
 
-        nav a::before {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background-color: var(--camo-accent);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover {
-            color: var(--camo-accent);
-        }
-
-        nav a:hover::before {
-            width: 100%;
-        }
-
-        main {
-            position: relative;
-            z-index: 2;
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
+        /* Hero */
         .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 4rem 2rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 10%;
-            right: -5%;
-            width: 500px;
-            height: 500px;
-            border: 1px solid var(--camo-green);
-            border-radius: 50%;
-            opacity: 0.15;
-            animation: float 8s ease-in-out infinite;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 5%;
-            left: 5%;
-            width: 300px;
-            height: 300px;
-            border: 2px solid var(--camo-accent);
-            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
-            opacity: 0.2;
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-30px);
-            }
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 3;
-            text-align: left;
-            animation: fadeInUp 1.2s ease-out;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            font-weight: 600;
-            letter-spacing: -1px;
-            color: var(--camo-light);
-            margin-bottom: 1rem;
-            line-height: 1.1;
-        }
-
-        .hero h1 span {
-            color: var(--camo-accent);
-            display: block;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--camo-tan);
-            max-width: 600px;
-            margin-bottom: 2rem;
-            line-height: 1.8;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            border: 1px solid var(--camo-accent);
-            color: var(--camo-accent);
-            text-decoration: none;
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-button::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background-color: var(--camo-accent);
-            transition: left 0.3s ease;
-            z-index: -1;
-        }
-
-        .cta-button:hover {
-            color: var(--camo-dark);
-            left: 0;
-        }
-
-        .cta-button:hover::before {
-            left: 0;
-        }
-
-        .portfolio-section {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--camo-dark) 0%, #252520 100%);
-            position: relative;
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .portfolio-header {
-            margin-bottom: 4rem;
-            position: relative;
-            z-index: 3;
-        }
-
-        .portfolio-header h2 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: clamp(1.8rem, 5vw, 2.5rem);
-            color: var(--camo-light);
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.5px;
-        }
-
-        .portfolio-header p {
-            color: var(--camo-tan);
-            font-size: 1rem;
-            max-width: 400px;
-        }
-
-        .portfolio-grid {
+            min-height: calc(100svh - 5.5rem);
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            position: relative;
-            z-index: 3;
-        }
-
-        .portfolio-item {
-            aspect-ratio: 1;
-            background: linear-gradient(135deg, var(--camo-green) 0%, var(--camo-tan) 100%);
-            border: 1px solid var(--camo-accent);
-            display: flex;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
+            gap: clamp(2rem, 5vw, 5rem);
+            padding-top: clamp(2rem, 6vh, 5rem);
+            padding-bottom: clamp(3rem, 8vh, 6rem);
         }
+        .hero h1 {
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(3.4rem, 9vw, 7.5rem);
+            line-height: 0.92;
+            letter-spacing: -0.025em;
+            margin-bottom: 2rem;
+        }
+        .hero h1 .line { display: block; }
+        .hero h1 .line + .line { padding-left: 0.55em; }
+        .hero .lede {
+            max-width: 28rem;
+            color: var(--bark);
+            font-size: 1.3rem;
+            line-height: 1.55;
+            margin-bottom: 2.5rem;
+        }
+        .button {
+            display: inline-block;
+            font-family: var(--mono);
+            font-size: 0.9rem;
+            text-decoration: none;
+            color: var(--soil);
+            background: var(--bone);
+            padding: 0.9rem 1.6rem;
+            border-radius: 999px;
+            transition: background 0.2s;
+        }
+        .button:hover { background: var(--amber); }
 
-        .portfolio-item::before {
-            content: '';
+        /* Dial — the one loud element */
+        .dial-figure {
+            justify-self: center;
+            width: min(100%, 30rem);
+        }
+        .dial {
+            position: relative;
+            aspect-ratio: 1;
+            width: 100%;
+        }
+        .dial-ring {
             position: absolute;
             inset: 0;
-            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), transparent 50%);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            border-radius: 50%;
+            /* midnight at bottom, noon at top */
+            background: conic-gradient(from 180deg,
+                var(--night) 0deg,
+                var(--night) 60deg,
+                #6b5a4a 85deg,
+                var(--amber) 100deg,
+                #a7a27a 125deg,
+                var(--moss) 160deg,
+                #8fa877 180deg,
+                var(--moss) 200deg,
+                #a7a27a 240deg,
+                var(--amber) 262deg,
+                #6b5a4a 278deg,
+                var(--night) 300deg,
+                var(--night) 360deg);
+            -webkit-mask: radial-gradient(circle, transparent 61%, #000 61.4%, #000 70%, transparent 70.4%);
+                    mask: radial-gradient(circle, transparent 61%, #000 61.4%, #000 70%, transparent 70.4%);
+            opacity: 0.9;
         }
-
-        .portfolio-item:hover {
-            transform: translateY(-8px);
-            border-color: var(--camo-light);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        .dial svg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: visible;
         }
-
-        .portfolio-item:hover::before {
-            opacity: 1;
+        .dial .tick { stroke: var(--bark); stroke-width: 0.35; }
+        .dial .tick.major { stroke: var(--bone); stroke-width: 0.6; }
+        .dial .hour-label {
+            font-family: var(--mono);
+            font-size: 3px;
+            fill: var(--bark);
+            text-anchor: middle;
+            dominant-baseline: middle;
         }
-
-        .portfolio-item-content {
+        .dial .hand {
+            transform-origin: 50px 50px;
+            transform: rotate(var(--angle, 180deg));
+        }
+        .dial.sweep .hand {
+            transition: transform 2.4s cubic-bezier(0.22, 0.9, 0.24, 1);
+        }
+        .dial .hand line { stroke: var(--bone); stroke-width: 0.3; opacity: 0.5; }
+        .dial .sun { fill: var(--amber); }
+        .dial .sun-halo { fill: var(--amber); opacity: 0.18; }
+        .dial-readout {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            place-content: center;
             text-align: center;
-            color: var(--camo-dark);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            opacity: 0.8;
+        }
+        .dial-time {
+            font-family: var(--mono);
+            font-size: clamp(1.6rem, 4.2vw, 2.4rem);
+            font-weight: 400;
+            letter-spacing: -0.02em;
+            font-variant-numeric: tabular-nums;
+        }
+        .dial-phase {
+            font-style: italic;
+            color: var(--bark);
+            font-size: 1.15rem;
+        }
+        .dial-figure figcaption {
+            margin-top: 1rem;
+            text-align: center;
+            color: var(--bark);
+            font-size: 1rem;
         }
 
-        .about-section {
-            padding: 6rem 2rem;
+        /* Sections */
+        section.block {
+            padding: clamp(4rem, 10vw, 8rem) 0;
+            border-top: 1px solid rgba(125, 154, 106, 0.25);
+        }
+        .block-head {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+            gap: var(--gutter);
+            margin-bottom: clamp(2.5rem, 5vw, 4rem);
+        }
+        .block-head h2 {
+            font-weight: 400;
+            font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+            line-height: 1.05;
+            letter-spacing: -0.015em;
+        }
+        .block-head p {
+            max-width: var(--measure);
+            color: var(--bark);
+            align-self: end;
+        }
+
+        /* Contact sheet */
+        .contact-sheet {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 0;
+            background: #13120f;
+            padding: 1.6rem 0.8rem;
             position: relative;
-            z-index: 2;
+        }
+        .contact-sheet::before,
+        .contact-sheet::after {
+            content: '';
+            position: absolute;
+            left: 0.8rem;
+            right: 0.8rem;
+            height: 0.55rem;
+            background-image: radial-gradient(ellipse 0.32rem 0.24rem at center, var(--soil-2) 99%, transparent 100%);
+            background-size: 1.15rem 0.55rem;
+            background-repeat: repeat-x;
+        }
+        .contact-sheet::before { top: 0.5rem; }
+        .contact-sheet::after { bottom: 0.5rem; }
+
+        .frame {
+            margin: 0 0.4rem;
+            position: relative;
+        }
+        .frame-image {
+            aspect-ratio: 3 / 2;
+            border-radius: 3px;
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+        }
+        .frame:nth-child(1) .frame-image {
+            background:
+                radial-gradient(120% 90% at 30% 20%, rgba(201, 162, 94, 0.45), transparent 60%),
+                linear-gradient(160deg, #4a3f33, #2a2620);
+        }
+        .frame:nth-child(2) .frame-image {
+            background:
+                repeating-linear-gradient(0deg, rgba(230, 221, 208, 0.07) 0 1px, transparent 1px 14px),
+                repeating-linear-gradient(90deg, rgba(230, 221, 208, 0.07) 0 1px, transparent 1px 14px),
+                linear-gradient(200deg, #2f3d33, #1f2620);
+        }
+        .frame:nth-child(3) .frame-image {
+            background:
+                radial-gradient(60% 60% at 70% 60%, rgba(125, 154, 106, 0.4), transparent 70%),
+                linear-gradient(180deg, #2a3340, #1f2420);
+        }
+        .frame-image svg {
+            width: 38%;
+            height: auto;
+            stroke: var(--bone);
+            fill: none;
+            stroke-width: 1;
+            opacity: 0.55;
+        }
+        .edge-code {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            color: #b38a4a;
+            padding: 0.35rem 0.2rem 0;
+            letter-spacing: 0.04em;
+        }
+        .frame-text {
+            padding: 1.25rem 0.2rem 0.4rem;
+        }
+        .frame-text h3 {
+            font-weight: 600;
+            font-size: 1.5rem;
+            line-height: 1.2;
+            margin-bottom: 0.4rem;
+        }
+        .frame-text p {
+            color: var(--bark);
+            font-size: 1.05rem;
+            line-height: 1.55;
+            margin-bottom: 0.9rem;
+        }
+        .status {
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            color: var(--moss);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .status::before {
+            content: '';
+            width: 0.45rem;
+            height: 0.45rem;
+            border-radius: 50%;
+            border: 1px solid var(--moss);
         }
 
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
+        /* About */
+        .about-body {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr);
+            gap: var(--gutter);
         }
-
-        .about-content h2 {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 2rem;
-            color: var(--camo-light);
-            margin-bottom: 2rem;
-            letter-spacing: -0.5px;
+        .about-body .prose { max-width: var(--measure); }
+        .about-body .prose p + p { margin-top: 1.2rem; }
+        .about-body .prose p:first-child {
+            font-size: 1.45rem;
+            line-height: 1.45;
+            color: var(--bone);
         }
+        .about-body .prose p { color: var(--bark); }
 
-        .about-content p {
-            font-size: 1.1rem;
-            color: var(--camo-tan);
+        .pairs {
+            list-style: none;
+            margin-top: 2.5rem;
+            display: grid;
+            gap: 0.6rem;
+            max-width: var(--measure);
+        }
+        .pairs li {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            align-items: center;
+            font-style: italic;
+            font-size: 1.2rem;
+        }
+        .pairs li span:nth-child(2) {
+            width: 3rem;
+            height: 1px;
+            background: var(--olive);
+        }
+        .pairs li span:last-child { text-align: left; color: var(--bark); }
+        .pairs li span:first-child { text-align: right; }
+
+        /* Contact */
+        .contact {
+            text-align: left;
+        }
+        .contact p {
+            color: var(--bark);
+            max-width: var(--measure);
             margin-bottom: 1.5rem;
-            line-height: 1.9;
         }
+        .section-title,
+        .contact h2 {
+            font-weight: 400;
+            font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+            line-height: 1.05;
+            margin-bottom: 1.25rem;
+        }
+        .email {
+            font-family: var(--serif);
+            font-style: italic;
+            font-size: clamp(1.8rem, 6vw, 4.4rem);
+            line-height: 1.1;
+            text-decoration: none;
+            border-bottom: 1px solid var(--olive);
+            transition: border-color 0.2s, color 0.2s;
+            word-break: break-word;
+        }
+        .email:hover { color: var(--amber); border-color: var(--amber); }
 
         footer {
-            border-top: 1px solid var(--camo-green);
-            padding: 3rem 2rem;
-            text-align: center;
-            color: var(--camo-tan);
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.85rem;
-            position: relative;
-            z-index: 2;
+            padding: 2.5rem 0 3rem;
+            color: var(--bark);
+            font-size: 0.95rem;
+        }
+        footer .wrap {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            flex-wrap: wrap;
         }
 
-        /* Decorative network lines */
-        svg {
-            position: absolute;
-            opacity: 0.08;
-            z-index: 1;
-        }
-
-        @media (max-width: 768px) {
-            nav ul {
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+            .dial-figure { width: min(100%, 22rem); }
+            .block-head, .about-body { grid-template-columns: 1fr; }
+            .contact-sheet {
+                grid-template-columns: 1fr;
+                padding: 0.8rem 1.6rem;
                 gap: 1.5rem;
             }
-
-            .hero h1 {
-                font-size: 2rem;
+            .contact-sheet::before, .contact-sheet::after {
+                top: 0.8rem; bottom: 0.8rem; left: auto; right: auto;
+                width: 0.55rem; height: auto;
+                background-image: radial-gradient(ellipse 0.24rem 0.32rem at center, var(--soil-2) 99%, transparent 100%);
+                background-size: 0.55rem 1.15rem;
+                background-repeat: repeat-y;
             }
+            .contact-sheet::before { left: 0.5rem; }
+            .contact-sheet::after { right: 0.5rem; }
+            .frame { margin: 0.4rem 0; }
+        }
+        @media (max-width: 520px) {
+            .site-header .wrap { flex-direction: column; gap: 0.75rem; }
+            .hero h1 .line + .line { padding-left: 0.3em; }
+        }
 
-            .portfolio-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero::before,
-            .hero::after {
-                display: none;
-            }
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .dial.sweep .hand { transition: none; }
         }
     </style>
 </head>
 <body>
-    <!-- Background Network Pattern -->
-    <svg width="100%" height="100%" viewBox="0 0 1200 800" style="position: fixed; top: 0; left: 0; z-index: 0;">
-        <defs>
-            <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
-                <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#3d5941" stroke-width="0.5"/>
-            </pattern>
-        </defs>
-        <rect width="100%" height="100%" fill="url(#grid)" opacity="0.03"/>
-    </svg>
+    <a class="skip" href="#main">Skip to content</a>
 
-    <header>
-        <nav>
-            <div class="logo">Circadian Rhythm</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#photography">Photography</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
+    <header class="site-header">
+        <div class="wrap">
+            <a class="wordmark" href="#top">Circadian Rhythm</a>
+            <nav aria-label="Primary">
+                <ul>
+                    <li><a href="#work">Work</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <main>
-        <section class="hero" id="home">
-            <div class="hero-content">
-                <h1>Circadian<span>Rhythm</span></h1>
-                <p>Where human form meets digital infrastructure. Raw photography. 3D motion. Digital experiences. Building the future, one frame at a time.</p>
-                <a href="#portfolio" class="cta-button">View Work</a>
+    <main id="main">
+        <section class="hero wrap" id="top">
+            <div>
+                <h1><span class="line">Circadian</span><span class="line">Rhythm</span></h1>
+                <p class="lede">A Chicago creative studio for film photography, 3D motion and digital experiences — work that keeps time with the light it was made in.</p>
+                <a class="button" href="#work">See what we make</a>
+            </div>
+
+            <figure class="dial-figure">
+                <div class="dial" id="dial" role="img" aria-label="A 24-hour dial showing the current time in Chicago">
+                    <div class="dial-ring"></div>
+                    <svg viewBox="0 0 100 100" aria-hidden="true">
+                        <g id="ticks"></g>
+                        <g class="hand">
+                            <line x1="50" y1="29" x2="50" y2="20"></line>
+                            <circle class="sun-halo" cx="50" cy="16.7" r="5.2"></circle>
+                            <circle class="sun" cx="50" cy="16.7" r="2.6"></circle>
+                        </g>
+                    </svg>
+                    <div class="dial-readout" aria-live="off">
+                        <div class="dial-time" id="dial-time">--:--</div>
+                        <div class="dial-phase" id="dial-phase">&nbsp;</div>
+                    </div>
+                </div>
+                <figcaption>Right now in Chicago, noon at the top, midnight at the bottom.</figcaption>
+            </figure>
+        </section>
+
+        <section class="block" id="work">
+            <div class="wrap">
+                <div class="block-head">
+                    <h2>What the studio makes</h2>
+                    <p>Three disciplines, shot and built in-house. The first portfolio pieces are being developed now and will appear here as they're printed and rendered.</p>
+                </div>
+
+                <ol class="contact-sheet">
+                    <li class="frame">
+                        <div class="frame-image" aria-hidden="true">
+                            <svg viewBox="0 0 48 48"><rect x="6" y="13" width="36" height="25" rx="2"/><circle cx="24" cy="25.5" r="8"/><circle cx="24" cy="25.5" r="4"/><path d="M15 13l2-4h14l2 4"/></svg>
+                        </div>
+                        <span class="edge-code">CR 400 &#9656; 1A</span>
+                        <div class="frame-text">
+                            <h3>Film photography</h3>
+                            <p>35mm and stereoscopic work — portraits, places and anaglyph pieces with real grain and real light.</p>
+                            <span class="status">Portfolio in development</span>
+                        </div>
+                    </li>
+                    <li class="frame">
+                        <div class="frame-image" aria-hidden="true">
+                            <svg viewBox="0 0 48 48"><path d="M24 6l16 9v18l-16 9-16-9V15z"/><path d="M8 15l16 9 16-9M24 24v18"/></svg>
+                        </div>
+                        <span class="edge-code">CR 400 &#9656; 2A</span>
+                        <div class="frame-text">
+                            <h3>3D motion</h3>
+                            <p>Short loops and animated pieces where geometry meets organic form, for brands, music and screens.</p>
+                            <span class="status">Portfolio in development</span>
+                        </div>
+                    </li>
+                    <li class="frame">
+                        <div class="frame-image" aria-hidden="true">
+                            <svg viewBox="0 0 48 48"><rect x="6" y="9" width="36" height="26" rx="2"/><path d="M18 41h12M24 35v6M13 18h10M13 23h16M13 28h7"/></svg>
+                        </div>
+                        <span class="edge-code">CR 400 &#9656; 3A</span>
+                        <div class="frame-text">
+                            <h3>Digital experiences</h3>
+                            <p>Websites and interactive pieces designed and coded by hand, with the same care as a print.</p>
+                            <span class="status">Portfolio in development</span>
+                        </div>
+                    </li>
+                </ol>
             </div>
         </section>
 
-        <section class="portfolio-section" id="portfolio">
-            <div class="portfolio-header">
-                <h2>Photography & 3D</h2>
-                <p>Film photography and 3D motion graphics. Coming soon.</p>
-            </div>
-            <div class="portfolio-grid">
-                <div class="portfolio-item">
-                    <div class="portfolio-item-content">
-                        <div>Film</div>
-                        <div style="font-size: 0.7rem; opacity: 0.6; margin-top: 0.5rem;">Coming Soon</div>
+        <section class="block" id="about">
+            <div class="wrap about-body">
+                <h2 class="section-title">About</h2>
+                <div>
+                    <div class="prose">
+                        <p>Circadian Rhythm is a creative studio built around a simple idea: good work follows a natural cycle of looking, making and resting.</p>
+                        <p>It starts with photography and 3D motion, and is growing into a home for multidisciplinary work — brand design, digital products and whatever comes next. If you have a project that should feel raw and considered at the same time, let's talk.</p>
                     </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-item-content">
-                        <div>3D Motion</div>
-                        <div style="font-size: 0.7rem; opacity: 0.6; margin-top: 0.5rem;">Coming Soon</div>
-                    </div>
-                </div>
-                <div class="portfolio-item">
-                    <div class="portfolio-item-content">
-                        <div>Digital Experiences</div>
-                        <div style="font-size: 0.7rem; opacity: 0.6; margin-top: 0.5rem;">Coming Soon</div>
-                    </div>
+                    <ul class="pairs" aria-label="What the studio works between">
+                        <li><span>Analog</span><span aria-hidden="true"></span><span>digital</span></li>
+                        <li><span>Geometry</span><span aria-hidden="true"></span><span>organic form</span></li>
+                        <li><span>Code</span><span aria-hidden="true"></span><span>craft</span></li>
+                    </ul>
                 </div>
             </div>
         </section>
 
-        <section class="about-section" id="contact">
-            <div class="about-content">
-                <h2>About</h2>
-                <p>Circadian Rhythm is a creative consulting studio focused on human-centered design and digital innovation. We explore the intersection of analog and digital, geometry and organic forms, code and creativity.</p>
-                <p>Starting with photography and 3D motion, we're building a platform for multi-disciplinary creative work—with plans to expand into brand design, digital products, and beyond.</p>
-                <p>Let's create something raw and meaningful together.</p>
-                <p style="margin-top: 2rem; color: var(--camo-accent);">contact@circadianrhythm.studio</p>
+        <section class="block contact" id="contact">
+            <div class="wrap">
+                <h2>Start a project</h2>
+                <p>Commissions, collaborations or just a hello. Email is the fastest way to reach the studio.</p>
+                <a class="email" href="mailto:contact@circadianrhythm.studio">contact@circadianrhythm.studio</a>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>&copy; 2024 Circadian Rhythm. All rights reserved.</p>
+        <div class="wrap">
+            <span>&copy; <span id="year">2026</span> Circadian Rhythm</span>
+            <span>Made in Chicago</span>
+        </div>
     </footer>
 
     <script>
-        // Smooth scroll behavior
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+        (function () {
+            // Build hour ticks
+            var ticks = document.getElementById('ticks');
+            var ns = 'http://www.w3.org/2000/svg';
+            for (var h = 0; h < 24; h++) {
+                var a = (h / 24) * 2 * Math.PI + Math.PI; // midnight at bottom
+                var major = h % 6 === 0;
+                var r1 = 28.6, r2 = major ? 26.4 : 27.4;
+                var sx = Math.sin(a), cy = -Math.cos(a);
+                var line = document.createElementNS(ns, 'line');
+                line.setAttribute('x1', 50 + sx * r1);
+                line.setAttribute('y1', 50 + cy * r1);
+                line.setAttribute('x2', 50 + sx * r2);
+                line.setAttribute('y2', 50 + cy * r2);
+                line.setAttribute('class', major ? 'tick major' : 'tick');
+                ticks.appendChild(line);
+                if (major) {
+                    var t = document.createElementNS(ns, 'text');
+                    t.setAttribute('x', 50 + sx * 38.5);
+                    t.setAttribute('y', 50 + cy * 38.5);
+                    t.setAttribute('class', 'hour-label');
+                    t.textContent = String(h).padStart(2, '0');
+                    ticks.appendChild(t);
                 }
+            }
+
+            var dial = document.getElementById('dial');
+            var timeEl = document.getElementById('dial-time');
+            var phaseEl = document.getElementById('dial-phase');
+
+            function chicagoNow() {
+                var parts = new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'America/Chicago', hour: 'numeric', minute: '2-digit', hourCycle: 'h23'
+                }).formatToParts(new Date());
+                var o = {};
+                parts.forEach(function (p) { o[p.type] = p.value; });
+                return { h: parseInt(o.hour, 10) % 24, m: parseInt(o.minute, 10) };
+            }
+
+            function phase(h) {
+                if (h < 5) return 'Night';
+                if (h < 7) return 'Dawn';
+                if (h < 11) return 'Morning';
+                if (h < 14) return 'Midday';
+                if (h < 17) return 'Afternoon';
+                if (h < 19) return 'Golden hour';
+                if (h < 21) return 'Dusk';
+                return 'Night';
+            }
+
+            function render() {
+                var t = chicagoNow();
+                var frac = (t.h + t.m / 60) / 24;
+                dial.style.setProperty('--angle', (180 + frac * 360) + 'deg');
+                var h12 = t.h % 12 || 12;
+                timeEl.textContent = h12 + ':' + String(t.m).padStart(2, '0') + (t.h < 12 ? ' am' : ' pm');
+                phaseEl.textContent = phase(t.h);
+                dial.setAttribute('aria-label', 'A 24-hour dial. It is ' + timeEl.textContent + ' in Chicago, ' + phaseEl.textContent.toLowerCase() + '.');
+            }
+
+            // One orchestrated moment: the sun sweeps from midnight to now on load
+            requestAnimationFrame(function () {
+                dial.classList.add('sweep');
+                requestAnimationFrame(render);
+                // Later updates snap, so the hand never spins backwards at midnight
+                setTimeout(function () { dial.classList.remove('sweep'); }, 2600);
             });
-        });
+            setInterval(render, 30000);
 
-        // Add animation on scroll
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.style.opacity = '1';
-                    entry.target.style.transform = 'translateY(0)';
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.portfolio-item').forEach(item => {
-            item.style.opacity = '0';
-            item.style.transform = 'translateY(20px)';
-            item.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(item);
-        });
+            document.getElementById('year').textContent = new Date().getFullYear();
+        })();
     </script>
 </body>
 </html>
